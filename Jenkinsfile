@@ -17,8 +17,9 @@ pipeline {
         stage('SonarQube scan'){
           steps{
               withSonarQubeEnv('SonarQube') {
-              sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=root-df_app-in-jenkins"  
+              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=root-df_app-in-jenkins'  
           }
+        }
         }
         stage('Code Build') {
             steps {
