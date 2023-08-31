@@ -14,6 +14,12 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/root-df/app-in-jenkins.git'
             }
         }
+        stage('SonarQube scan'){
+          steps{
+              withSonarQubeEnv('SonarQube') {
+              sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=root-df_app-in-jenkins"  
+          }
+        }
         stage('Code Build') {
             steps {
                 sh 'mvn clean install package'
